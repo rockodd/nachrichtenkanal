@@ -7,11 +7,15 @@ public class Basic implements Animate, Ball {
 	public double posy = 0;
 	public double rad = 5;			//global, da die Variablen später verändert werden
 	
+	// läuft
+	
 	
 	@Override
 	public double getRadius() {	
 		return rad;
 	}
+	
+	
 
 	@Override
 	public double getX() {
