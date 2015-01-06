@@ -6,37 +6,32 @@ import cs101.lang.AnimatorThread;
 
 public class Sender implements Animate{
 	
-	public static TextContainer kanal1;
+	TextContainer kanal1;
 	
-	public Sender() {
-
+	public Sender() {								//std. Konstruktur
 	}
 	
-	public Sender(TextContainer kanal1) {
-		System.out.println("Bitte Nachrichten eingeben:");
-		this.kanal1 = kanal1;
-		
+	public Sender(TextContainer kanal1) {			// Konstruktur
+		System.out.println("Sender gestartet, bitte Nachrichten eingeben:");	// Eingabeaufforderung aus dem Konstruktur
+		this.kanal1 = kanal1;													// Variable kanal1 wird erzeugt  
 	}
 		
-	public static void lesen() {
-		System.out.println("NEU:");
-		String text = Console.readln();
-		kanal1.enter(text);
-	
+	public void lesen() {														// Methode zum lesen der Konsoleneingabe
+		System.out.println(">>");
+		String text = Console.readln();											// EIngabe wird aus Konsole gelesen und in Variable gespeichert
+		kanal1.enter(text);														// eingelesener Text wird in Array gespeichert
 	}
 	
 	
 	public static void main(String[] args) {
-		TextContainerPrototype kanal1 = new TextContainerPrototype(4);
-		AnimatorThread aniSender = new AnimatorThread(new Sender(kanal1));
-		aniSender.startExecution();
-		
-		
+		TextContainerPrototype kanal1 = new TextContainerPrototype(4);			// Objekt vom Typ TextContainerPrototype erzeugt Array mit 4 Feldern
+		AnimatorThread aniSender = new AnimatorThread(new Sender(kanal1));		// Animator Thread wird erzeugt und mit Objekt Sender übergeben
+		aniSender.startExecution();												// Animator Thread wird gestartet
 	}
 
 
 	@Override
-	public void act() {
+	public void act() {															// act Methode ruft immer lesen-Methode auf
 		// TODO Auto-generated method stub
 		lesen();
 	}
