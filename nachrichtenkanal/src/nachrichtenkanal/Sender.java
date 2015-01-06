@@ -13,7 +13,7 @@ public class Sender implements Animate{
 	}
 	
 	public Sender(TextContainer kanal1) {
-		System.out.println("Bitte erste Nachricht eingeben:");
+		System.out.println("Bitte Nachrichten eingeben:");
 		this.kanal1 = kanal1;
 		
 	}
