@@ -11,16 +11,24 @@ public class Sender implements Animate{
 	public Sender() {								//std. Konstruktur
 	}
 	
-	public Sender(TextContainer kanal1) {			// Konstruktur
+	/* Konstruktor, wird aufgerufen beim erstellen eines neuen Objektes mit "new Sender" */
+	public Sender(TextContainer kanal1) {			
 		System.out.println("Sender gestartet, bitte Nachrichten eingeben:");	// Eingabeaufforderung aus dem Konstruktur
 		this.kanal1 = kanal1;													// Variable kanal1 wird erzeugt  
 	}
 		
 	public void lesen() {														// Methode zum lesen der Konsoleneingabe
-		System.out.println(">>");
-		String text = Console.readln();											// EIngabe wird aus Konsole gelesen und in Variable gespeichert
-		kanal1.enter(text);														// eingelesener Text wird in Array gespeichert
+		try {
+			String text = Console.readln();		// EIngabe wird aus Konsole gelesen und in Variable gespeichert
+			kanal1.enter(text);					// eingelesener Text wird in Array gespeichert
+			}
+		catch (FullException e) { 				// fängt alle Fehler die auftreten wenn der Container Voll ist.
+			System.out.println("Nachrichtenkanal überfüllt, Nachricht wird verworfen!");
+			}	
+		
 	}
+		
+												
 	
 	
 	public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package nachrichtenkanal;
 
-public class MyContainer implements TextContainer {
+public class MyContainerFIFOarray implements TextContainer {
 	
 	private String[] list;		// String Array wird erzeugt
 	private int size,			// Variablen für Größe und Zähler für das Array
@@ -8,17 +8,17 @@ public class MyContainer implements TextContainer {
 				count = 0,
 				last = 0;
 	
-	public MyContainer(){
+	public MyContainerFIFOarray(){
 		this(50);
 	}
 	/* Konstruktor bekommt Größe übergeben und erzeugt String Array  */
-	public MyContainer(int size){
+	public MyContainerFIFOarray(int size){
 		this.size = size;			
 		list = new String[size];	// String-Array mit übergebener Größe wird erzeugt
 	}
 	/* Methode um Elemente dem Array hinzuzufügen */
 	public void enter (String s) throws FullException{
-		if ( count >= size) throw new FullException();
+		if ( count >= size) throw new FullException();			
 		list[next] = s;
 		next = (next+1)%size;				//modulo um nächstes Element zu ermitteln
 		count++;
@@ -36,6 +36,25 @@ public class MyContainer implements TextContainer {
 	public boolean emtpy() {
 		return count == 0;			// true wird zurückgegeben wenn leer
 		
+	}
+	
+	public static void main (String[] args) {
+		MyContainerFIFOarray chn = new MyContainerFIFOarray(4);
+		try {	chn.enter("ONE"); 		// top steht auf 1
+				chn.enter("TWO");
+				chn.enter("THREE");
+				chn.enter("FOUR");
+				//chn.enter("FIVE");
+				System.out.println(chn.remove());
+				System.out.println(chn.remove());
+				System.out.println(chn.remove());
+				System.out.println(chn.remove());
+				
+		}
+		catch (EmptyException e) { 
+				System.out.println("leer");
+				
+		}
 	}
 
 }

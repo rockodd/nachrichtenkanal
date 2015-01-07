@@ -36,10 +36,10 @@ public class TextContainerPrototype implements TextContainer {
 	// Main Methode zum testen
 	public static void main(String[] args) {
 		TextContainerPrototype chn = new TextContainerPrototype(4);
-		try {	chn.enter("erstes"); 		// top steht auf 1
-				chn.enter("zweites");
-				chn.enter("drittes");
-				chn.enter("VIER");
+		try {	chn.enter("ONE"); 		// top steht auf 1
+				chn.enter("TWO");
+				chn.enter("THREE");
+				chn.enter("FOUR");
 				System.out.println(chn.remove());
 				System.out.println(chn.remove());
 				System.out.println(chn.remove());

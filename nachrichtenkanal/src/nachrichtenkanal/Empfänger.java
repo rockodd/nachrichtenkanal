@@ -1,22 +1,23 @@
 package nachrichtenkanal;
 
+import java.util.NoSuchElementException;
+
 import cs101.lang.Animate;
 import cs101.lang.AnimatorThread;
 
 public class Empfänger implements Animate {
 	
-	TextContainer kanal1;					// Variable vom Typ TextContainer mit Namen kanal1 wird erstellt
+	TextContainer kanal1;					// ObjektVariable vom Typ TextContainer mit Namen kanal1 wird erstellt
 	TextGUI msgGUI = new TextGUI();			// neues Objekt vom Typ TextGui wird erzeugt
 	
-	public Empfänger() {					// 
-
-	}
+	public Empfänger() {					// std. Konstruktor
+		}
 	
+	/* Konstruktor, wird aufgerufen beim erstellen eines neuen Objektes mit "new Empfänger" */
 	public Empfänger(TextContainer kanal1) {
-		System.out.println("Empfänger gestartet");	//
-		this.kanal1 = kanal1;				// 
-		
-	}
+		this.kanal1 = kanal1;						// Objektvariable wird mit übergebenem Kanal beschrieben
+		System.out.println("Empfänger gestartet");	// 
+		}
 		
 	public void ausgeben() {
 		try {
@@ -26,17 +27,22 @@ public class Empfänger implements Animate {
 		catch (EmptyException e) { 			// fängt alle Fehler die auftreten wenn der Container leer ist.
 			//System.out.println("leer");
 			}	
-		catch (NullPointerException z) {/* warte*/}	// fängt eine NullPointerException,
-		
-	}
+		catch (NullPointerException z) {/* warte*/}		// fängt eine NullPointerException,
+		catch (NoSuchElementException z) {/*warte*/}  	// fängt die EmptyException, die durch Java Collection 
+														// Framework erzeugt wird, wenn queue leer ist.
+		}
 		
 	public static void main(String[] args) {
-		MyContainer kanal1 = new MyContainer(4);
-		AnimatorThread aniSender = new AnimatorThread(new Sender(kanal1));
+		MyContainerJavaCollection kanal1 = new MyContainerJavaCollection();
+		kanal1.enter("ONE"); 		// Array wird gefüllt
+		kanal1.enter("TWO");
+		kanal1.enter("THREE");
+		kanal1.enter("FOUR");
+		kanal1.enter("FIVE");
+			
 		AnimatorThread aniEmpfänger = new AnimatorThread(new Empfänger(kanal1));
-		aniSender.startExecution();
 		aniEmpfänger.startExecution();
-		aniEmpfänger.setSleepRange(50000);		
+		aniEmpfänger.setSleepRange(2000);		
 	}
 
 
